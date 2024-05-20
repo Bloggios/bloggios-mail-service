@@ -15,4 +15,5 @@ import lombok.experimental.UtilityClass;
 public class InternalErrorCodes {
 
     public static final String JSON_DESERIALIZATION = "IE__MAIL-1001";
+    public static final String EXCEPTION_CODES = "IE__MAIL-1002";
 }
