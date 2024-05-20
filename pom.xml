@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.bloggios.email</groupId>
-    <artifactId>bloggios-email-service</artifactId>
+    <artifactId>bloggios-mail-service</artifactId>
     <version>1.0</version>
-    <name>bloggios-email-service</name>
-    <description>bloggios-email-service</description>
+    <name>bloggios-mail-service</name>
+    <description>bloggios-mail-service</description>
     <properties>
         <java.version>17</java.version>
         <spring-cloud.version>2021.0.3</spring-cloud.version>

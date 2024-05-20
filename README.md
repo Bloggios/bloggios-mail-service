@@ -28,16 +28,22 @@
 
 ## <a name="introduction">🤖 Introduction</a>
 
-Built using Java 17 and Spring Boot, the mail is central to all notification functions using mail within a system, ensuring scalability and enhancing user experience through various features.
+Bloggios Mail Service, constructed with Java 17, Spring Boot, Java Mail, and Kafka, facilitates seamless email
+notifications in HTML format using Thymeleaf. This robust combination allows for efficient handling of email
+functionalities, ensuring reliable delivery of messages. Leveraging Kafka enables asynchronous processing, enhancing
+performance and scalability. With its integration of Thymeleaf, personalized and visually appealing email templates can
+be effortlessly created and dispatched. Bloggios Mail Service simplifies the process of sending dynamic email
+notifications, making it an indispensable tool for various applications and businesses.
 
 ## Key Features
 
-- **Consuming Kafka Events**: Automatically sending mail as soon as receiving any event from Kafka.
-- **Sending HTML Mails**: Sending mails in more user friendly Interface with Thymeleaf.
-- **Persisting Mail Records**: Persisting each and every record of mails in Postgres Database
-- **OTP Management**: Handles the generation and validation of one-time passwords for 2FA or account recovery, adding an extra layer of security.
+- **HTML Email Support:** Enables sending of visually rich HTML-formatted emails.
+- **Thymeleaf Integration:** Utilizes Thymeleaf for easy creation of dynamic and personalized email templates.
+- **Asynchronous Processing with Kafka:** Enhances performance by leveraging Kafka for asynchronous message processing.
+- **Java Mail API:** Integrates Java Mail API for reliable and efficient email handling.
 
-Join our newly active Discord community for support, bug reporting, and feature requests. Here, we strive to address every issue, and developers and testers can collaborate and assist each other effectively.
+Join our newly active Discord community for support, bug reporting, and feature requests. Here, we strive to address
+every issue, and developers and testers can collaborate and assist each other effectively.
 
 <a href="https://discord.gg/sEerF8HuKC" target="_blank">
 <img src="https://img.shields.io/badge/-Join_our_Community-4258ff?style=for-the-badge&logoColor=white&logo=discord&color=5865F2" alt="Discord" />
@@ -48,13 +54,13 @@ Join our newly active Discord community for support, bug reporting, and feature 
 - Java 17
 - Spring Boot
 - PostgreSQL
-- Elasticsearch
-- OAuth2.0
 - Kafka
 
 ## <a name="documentation">🔋 API Documentation</a>
 
-To help you get started with our API and understand all its features and endpoints, we have created detailed documentation available on Postman. This documentation includes comprehensive information about each endpoint, including:
+To help you get started with our API and understand all its features and endpoints, we have created detailed
+documentation available on Postman. This documentation includes comprehensive information about each endpoint,
+including:
 
 - **Endpoint URLs**: Specific paths to access various functionalities.
 - **HTTP Methods**: The method type (GET, POST, PUT, DELETE, etc.) for each endpoint.
@@ -66,12 +72,16 @@ To help you get started with our API and understand all its features and endpoin
 To access the documentation:
 
 1. **Visit our Postman Documentation Page**: [Visit Documentation](https://www.postman.com/rohit-zip/workspace/bloggios)
-2. **Explore the Collection**: Navigate through the collection to find detailed descriptions and examples for each endpoint.
-3. **Run Requests Directly in Postman**: Use the "Run in Postman" button to directly import the collection into your Postman workspace for testing and exploration.
+2. **Explore the Collection**: Navigate through the collection to find detailed descriptions and examples for each
+   endpoint.
+3. **Run Requests Directly in Postman**: Use the "Run in Postman" button to directly import the collection into your
+   Postman workspace for testing and exploration.
 
-By leveraging the Postman documentation, you can quickly integrate our API into your application and take full advantage of its capabilities.
+By leveraging the Postman documentation, you can quickly integrate our API into your application and take full advantage
+of its capabilities.
 
-For any further assistance, feel free to contact our support team or refer to the additional resources section in the documentation.
+For any further assistance, feel free to contact our support team or refer to the additional resources section in the
+documentation.
 
 ## <a name="quick-start">🤸 Quick Start</a>
 
@@ -101,6 +111,7 @@ We recommended Intellij Idea
 
 Make sure you have Java 17 Installed in your system
 Please execute the below command to check installed version of Java in your system
+
 ```bash
 java --version
 ```
@@ -110,6 +121,7 @@ java --version
 Navigate to `src/main/resources/application.yml` and add the required environment variables
 
 If you are new at setting environment variables the please go through the below videos
+
 - Intellij Idea [See Video](https://www.youtube.com/watch?v=jNOh4jQJG2U)
 - Eclipse or STS [See Video](https://www.youtube.com/watch?v=ypvGDkbp8Ac)
 
@@ -119,6 +131,10 @@ POSTGRES_DATABASE -> Postgresql Database name
 POSTGRES_HOST -> Postgres Database Host
 POSTGRES_PASSWORD -> Postgres Database Password
 POSTGRES_USERNAME -> Postgresq Database Username
+MAIL_HOST -> Mail Host
+MAIL_PORT
+MAIL_USERNAME -> Username of Mail
+MAIL_PASSWORD -> Password of Mail
 ```
 
 Replace the placeholder values with your actual credentials
@@ -141,9 +157,11 @@ If you wish to contribute, you can,
 - Improve documentation.
 - Create content about Bloggios and share it with the world.
 
-> Please read [`CONTRIBUTING`](CONTRIBUTING.md) for details on our [`CODE OF CONDUCT`](CODE_OF_CONDUCT.md), and the process for submitting pull requests to us.
+> Please read [`CONTRIBUTING`](CONTRIBUTING.md) for details on our [`CODE OF CONDUCT`](CODE_OF_CONDUCT.md), and the
+> process for submitting pull requests to us.
 
-🆕 New to Open Source? 💡 Follow this [guide](https://opensource.guide/how-to-contribute/) to jumpstart your Open Source journey 🚀.
+🆕 New to Open Source? 💡 Follow this [guide](https://opensource.guide/how-to-contribute/) to jumpstart your Open Source
+journey 🚀.
 
 ## <a name="links">🔗 Links</a>
 
@@ -156,7 +174,8 @@ If you wish to contribute, you can,
 
 ## <a name="support">🙏Support</a>
 
-We all need support and motivation. `Bloggios` is not an exception. Please give this project repositories a ⭐️ to encourage and show that you liked it. Don't forget to leave a star ⭐️ before you move away.
+We all need support and motivation. `Bloggios` is not an exception. Please give this project repositories a ⭐️ to
+encourage and show that you liked it. Don't forget to leave a star ⭐️ before you move away.
 
 If you found the app helpful, consider supporting us with a coffee.
 
