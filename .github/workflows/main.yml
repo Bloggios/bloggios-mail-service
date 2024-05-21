@@ -29,31 +29,23 @@ jobs:
       - name: Build with Maven
         run: mvn clean install
 
-      - name: Cleaning Docker File
+      - name: Stopping Container
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.V4_HOST }}
           username: ${{ secrets.V4_USERNAME }}
-          password: ${{ secrets.V4_VPS_PRIVATE_KEY }}
+          key: ${{ secrets.V4_VPS_PRIVATE_KEY }}
           port: 22
           script: |
             cd /root/bloggios-deployment-docker-files
             git stash
             git pull origin main
+            set +e
+            docker-compose -f docker-compose-devsandbox.yml stop bloggios-mail-service
+            docker rmi bloggios-mail-service:1.0
+            set -e
 
-      - name: Cleaning File
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.V4_HOST }}
-          username: ${{ secrets.V4_USERNAME }}
-          password: ${{ secrets.V4_VPS_PRIVATE_KEY }}
-          port: 22
-          script: |
-            cd /root/microservices/bloggios-mail-service
-            git stash
-            git pull origin main
-
-      - name: Add Logback File
+      - name: Copying Logback
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.V4_HOST }}
@@ -64,7 +56,7 @@ jobs:
             rm /root/microservices/bloggios-mail-service/src/main/resources/mail-logback.xml
             cp /root/secrets/logback/mail-logback.xml /root/microservices/bloggios-mail-service/src/main/resources
 
-      - name: Stopping Container
+      - name: Copying Secrets
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.V4_HOST }}
@@ -72,13 +64,12 @@ jobs:
           key: ${{ secrets.V4_VPS_PRIVATE_KEY }}
           port: 22
           script: |
-            cd /root/bloggios-deployment-docker-files
             set +e
-            docker-compose -f docker-compose-devsandbox.yml stop bloggios-mail-service
-            docker rmi -f bloggios-mail-service:1.0
+            rm /root/microservices/bloggios-mail-service/src/main/resources/security/pubkey.pem
             set -e
+            cp /root/secrets/certificates/pubkey.pem /root/microservices/bloggios-mail-service/src/main/resources/security
 
-      - name: Generating Docker Image
+      - name: Generating Docker Image for Bloggios
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.V4_HOST }}
@@ -87,6 +78,8 @@ jobs:
           port: 22
           script: |
             cd /root/microservices/bloggios-mail-service
+            git stash
+            git pull origin main
             chmod +x mvnw
             ./mvnw clean package
 
@@ -101,7 +94,7 @@ jobs:
             cd /root/bloggios-deployment-docker-files
             docker-compose -f docker-compose-devsandbox.yml up -d bloggios-mail-service
 
-      - name: Cleaning Targets
+      - name: Removing Targets
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.V4_HOST }}
