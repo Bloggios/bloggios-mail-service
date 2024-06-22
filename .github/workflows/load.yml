@@ -40,7 +40,7 @@ jobs:
             git stash
             git pull origin main
             set +e
-            docker-compose -f docker-compose-devsandbox.yml stop bloggios-mail-service
+            docker-compose -f docker-compose-load.yml stop bloggios-mail-service
             docker rmi bloggios-mail-service:1.0
             set -e
 
@@ -91,7 +91,7 @@ jobs:
           port: 22
           script: |
             cd /root/bloggios-deployment-docker-files
-            docker-compose -f docker-compose-devsandbox.yml up -d bloggios-mail-service
+            docker-compose -f docker-compose-load.yml up -d bloggios-mail-service
 
       - name: Removing Targets
         uses: appleboy/ssh-action@master
